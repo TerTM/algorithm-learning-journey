@@ -1,0 +1,134 @@
+untuk melakukan percobaan berulang pada fungsi agar mudah cth di : inputdictionary
+
+
+dalam memecahkan masalah catat semua kemungkinan yang bisa terjadi 
+Here's a systematic strategy we've applied for solving the problem:
+
+State the problem clearly. Identify the input & output formats.
+Come up with some example inputs & outputs. Try to cover all edge cases.
+Come up with a correct solution for the problem. State it in plain English.
+Implement the solution and test it using example inputs. Fix bugs, if any.
+Analyze the algorithm's complexity and identify inefficiencies, if any.
+Apply the right technique to overcome the inefficiency. Repeat steps 3 to 6.
+
+
+[+] usahakan function tidak lebih dari 10 baris(utamakan kemudahan dalam dibaca) pecah jadi bagian2 kecil
+
+
+The space complexity c`(single constant) independent from n
+
+Time Complexity Big O Notation : mencari worst case jadi setiap constanta yang tidak ikut berubah ketika n berubah tdk diperhitungkan karena yang dicari adalah pola pertumbuhan dan bukan angka detail
+
+misalnya n^2 dan 10n^2 hanya beda faktor 10 sementara n^2 dan n^3 perbedaan skalanya bisa jadi ribuan kali lipat ketka n membesar
+
+Rekursif  =-------------------------------------------------------------------------
+Non-tail jika masih ada aksi setelah rekursif
+tail jika sudah tidak ada aksi setelah rekursif
+
+basecase  : kondisi berhenti pada rekursif
+recursive case : lanjut ke cabang berikutnya
+
+# kita bisa membuat base case berhenti di iterasi yang kita mau dengan cara memanggil fungsi dengan menggunakan if sehingga jika terpenuhi akan di return 
+sehingga kita bisa berhenti saat base case pertama terpenuhi
+
+# kita juga bisa membuat base case menghitung sesuai yang kita mau dan menaruh return fungsi ke dalam variabel 
+contoh di rekursifpattern
+
+
+Subsequences --------------------
+urutan elemen yang diturunkan dari urutan lain dengan menghapus beberapa (atau tanpa) elemen, tetapi tetap menjaga urutan relatif dari elemen yang tersisa
+
+[3,1,2] contoh non-contagious subsequences = [3,2]
+
+subarray adalah subsequences yg contagious 
+
+
+Sort -----------------------
+Bubble sort    : mendorong nilai terbesar dari depan kebelakang
+Selection sort : membandingkan nilai terdepan kemudian membandingkan dengan nilai paling minimal kemudian bertukar jadi nilai terkecil didepan 
+insertion sort : mengambil elemen dan menaruh ke tempatnya dengan dimulai dari elemen indeks ke 1 dibandingkan dengan indeks ke 0
+
+
+Merge sort : memecah array secara hipotetical menjadi 2 bagian kemudian dimerge dengan dimasukkan ke temp sesuai urutan
+https://youtu.be/4VqmGXwpLqc?si=eDLNo1XaP4jqz2nk
+
+
+Quick Sort
+1. ambil salah satu index(bebas) untuk menjadi pivot dan taruh ke tempat dia yang tepat
+2. lebih kecil taru di sebelah kiri, lebih besar taru di sebelah kanan dari pivot
+
+dan cara untuk mengetahui pivot sudah ditaruh di tempat yang bener adalah dengan memastikan dikiri tidak yang lebih besar dari pivot dan dikanan tidak ada yang lebih kecil dari pivot
+dengan membuat sebuah pointer left yang akan mencari nilai yang lebih besar dari pivot, pointer right yang akan mencari nilai yang lebih kecil dari pivot kemudian kita tukar nilainya dan pindahkan pointernya. 
+
+
+salah satu cara mendapatkan pivot terbaik adalah Median-of-Three 
+yaitu Melihat tiga elemen (pertama, tengah, dan terakhir), lalu memilih nilai tengah (median) dari ketiganya sebagai pivot.
+
+[+] jika pivot yang diambil dari kiri maka saat left and right pointer sudah berseberangan maka tukar dengan right berlaku sebaliknya jika pivot yang diambil dari kanan 
+
+karena misal jika kita mulai pivot dari high(paling kanan)maka kita akan ambil pointer dari left yang nilai terakhirnya akan mencari nilai yang lebih besar dari pivot
+
+
+
+
+
+Graph =============---------------
+keunggulan BFS(Breadth First Search) 
+Mengambil elemen terdepan (FIFO) sehingga ini memastikan traversal level by level sehingga jalur pertama yang ditemukan ke goal adalah jalur dengan jumlah edge terkecil.
+
+cth dan penjelasan di BFS.py
+
+---------- Penjelasan dari materi UBM
+Algoritma Dijkstra digunakan untuk mencari jalur dengan total bobot minimum dari satu simpul ke simpul lain, sedangkan A* merupakan pengembangannya yang menggunakan nilai heuristik untuk mempercepat proses pencarian.
+
+=-
+Minimum Spanning Tree bertujuan menghubungkan seluruh simpul dengan total bobot paling kecil tanpa membentuk siklus, yang dapat diselesaikan menggunakan algoritma Prim atau Kruskal, dan banyak digunakan dalam perancangan jaringan dengan biaya minimum.
+=-
+ Nilai heuristik adalah nilai estimasi yang digunakan
+dalam algoritma pencarian (search algorithm) untuk
+menilai seberapa “bagus” suatu simpul (node) dalam
+mencapai tujuan (goal).
+
+algoritma greedy pada graf yaitu greedy best first search		
+
+Minimum spanning tree
+semua node harus untuk graf tidak berarah, tetepi tidak boleh bersiklus, tetapi semua node harus dikunjungi
+terdapat dua algoritma
+1. Algoritma Prim : ambil tetangga dengan nilai terkecil
+2. Kruskal : urutkan dulu berdasarkan bobot dari terkecil ke terbesar
+
+
+
+Algoritma String =================------------------
+
+Algoritma Levensthein Distance
+Algoritma Rabin Karp
+Algoritma Boyer-Moore
+
+
+Dynamic Programming ===============---------------------------
+https://youtu.be/oBt53YbR9Kk?si=1xD5-a5puY_zQi34
+
+-=  yaitu mencari generalisasi/kesamaan dari sebuah problem melalui pemecahan probelm menjadi sub-problem2 kecil yang sudah diketahui(overlapping subproblem dan lihat opsi apa yang tersedia) dan bisa diselesaikan kemudian dijadikan pondasi untuk dipakai selanjutnya contohnya :
+
+
+[berapa banyak cara dari sudut kiri atas ke sudut kanan bawah pada grid traveler jika hanya bisa bergerak ke bawah dan ke kanan]
+
+pada awalnya kita mencari tau basecasenya terlebih dahulu 
+yaitu jika 1*1 maka akan ada 1 cara
+lalu cari kesamaan dari problem misalnya 3*3 dengan subproblem yang kita ketahui 2*3 ada 3 cara lalu kita kecilkan lagi subproblemnya 2*2 ada 2 cara. 2*1 ada 1 cara. 1*3 ada 1 cara. 1*1 ada 1 cara
+contoh pada grid_traveler.py
+
+saat menyelesaikan masalah menggunakan rekursif selalu visualisasikan masalah dengan menggunakan tree
+
+--------
+-= Tabulation
+perbedaanya dengan memoization adalah tabulasi tidak menggunakan rekursif, melainkan iterasi melalui array, sedangkan memoization menggunaakn rekursif
+
+Tabulation recipe :
+Visualisasikan masalah sebagai table dengan size table menyesuaikan input, kemudian berikan nilai2 awal,kita ingin mengisi nilai poisisi akhir berdasarkan posisi sekarang dengan opsi2 yang kita punya misalnya pada fibonaci dengan menambahkan ke kedua bilangan di dibelakangnya, grid traveller dengan bergerak ke atas dan kekanan.
+
+hati2 dengan off by one error saat membuat tabulasi karena index selalu dimulai dengan 0 
+
+
+
